@@ -100,7 +100,7 @@ class CreateOrderView(APIView):
             order = Order.objects.create(
                 user=user,
                 shipping_address=shipping_address,
-                order_status='ORDER_PLACED',
+                order_status='PAYMENT_PENDING',
                 status='PENDING',
                 total_price=total_price,
                 total_discounted_price=total_discounted_price,

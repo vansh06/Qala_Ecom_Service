@@ -5,6 +5,8 @@ from .models import Order, OrderItem
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
+    can_delete = False  # ✅ disables the "delete" checkbox
+
     extra = 0
     readonly_fields = ('product', 'price', 'discounted_price', 'quantity', 'user')
 
@@ -18,7 +20,7 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = ('user__email', 'user__mobile', 'razorpay_order_id')
     inlines = [OrderItemInline]
     readonly_fields = (
-        'user', 'shipping_address', 'status', 'order_status',
+        'user', 'shipping_address', 'status',
         'total_discounted_price', 'total_price', 'total_items',
         'sq_id_list', 'razorpay_order_id', 'razorpay_payment_id', 
         'razorpay_signature', 'created_at', 'updated_at'
